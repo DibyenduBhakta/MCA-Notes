@@ -1,6 +1,6 @@
  # 1. Design and validate this form with proper code.
 
-![[image.png]]
+![alt text](../img/image.png)
 ```php
 <!DOCTYPE html>
 <html lang="en">
