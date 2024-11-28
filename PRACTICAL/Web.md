@@ -64,7 +64,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
         // Save $username, $email, and $hashedPassword to your database
 
-        echo "<p style='color:green;'>Registration successful!</p>";
+        echo "<p>Registration successful!</p>";
     } else {
         // Display errors
         foreach ($errors as $error) {
