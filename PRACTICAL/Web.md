@@ -541,7 +541,7 @@ _Expected Output :_ d,do,dog,o,og,g
 
 # 8. Write these programs in PHP.
 
-## a)  Swap two numbers using function in PHP.
+## a. Swap two numbers using function in PHP.
 
 ```php
 <?php
@@ -565,7 +565,7 @@ echo "After swapping: num1 = $num1, num2 = $num2\n";
 ?>
 ```
 
-## b) Factorial of a number using function in PHP.
+## b. Factorial of a number using function in PHP.
 
 ```php
 <?php
@@ -605,4 +605,23 @@ function factorial(n) {
 let num = 5;
 let result = factorial(num);
 console.log(`The factorial of ${num} is ${result}`);
+```
+
+## b. Write a JavaScript program to find the greatest common divisor (gcd) of two positive numbers.
+
+```js
+function gcd(a, b) {
+  // Base case: If b is 0, then a is the GCD
+  if (b === 0) {
+    return a;
+  }
+  // Recursive case: Find the GCD of b and the remainder of a divided by b
+  return gcd(b, a % b);
+}
+
+// Example usage:
+const num1 = 24;
+const num2 = 36;
+const greatestCommonDivisor = gcd(num1, num2);
+console.log(`The GCD of ${num1} and ${num2} is: ${greatestCommonDivisor}`);
 ```
