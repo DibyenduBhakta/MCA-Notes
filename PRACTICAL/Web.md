@@ -129,7 +129,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 ![alt text](<../img/Screenshot 2024-11-28 202801.png>)
 
-# 3. Build a HTML form and write PHP code to design a calculator program to show use of +,-,* ,/ operators.
+# 3. Build a HTML form and write PHP code to design a calculator program to show use of +,-,\* ,/ operators.
 
 ```php
 <!DOCTYPE html>
@@ -344,52 +344,54 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 ```html
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <title>Palindrome Checker</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 50px;
-        }
-        #result {
-            margin-top: 20px;
-            font-weight: bold;
-        }
+      body {
+        font-family: Arial, sans-serif;
+        margin: 50px;
+      }
+      #result {
+        margin-top: 20px;
+        font-weight: bold;
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <h1>Palindrome Checker</h1>
     <form id="palindromeForm">
-        <label for="inputString">Enter a string:</label>
-        <input type="text" id="inputString" required>
-        <button type="submit">Check</button>
+      <label for="inputString">Enter a string:</label>
+      <input type="text" id="inputString" required />
+      <button type="submit">Check</button>
     </form>
 
     <div id="result"></div>
 
     <script>
-        function isPalindrome(str) {
-            // Remove non-alphanumeric characters and convert to lowercase
-            const cleanedStr = str.replace(/[^A-Za-z0-9]/g, '').toLowerCase();
-            const reversedStr = cleanedStr.split('').reverse().join('');
-            return cleanedStr === reversedStr;
-        }
+      function isPalindrome(str) {
+        // Remove non-alphanumeric characters and convert to lowercase
+        const cleanedStr = str.replace(/[^A-Za-z0-9]/g, "").toLowerCase();
+        const reversedStr = cleanedStr.split("").reverse().join("");
+        return cleanedStr === reversedStr;
+      }
 
-        document.getElementById('palindromeForm').addEventListener('submit', function(event) {
-            event.preventDefault(); // Prevent form submission
-            const inputString = document.getElementById('inputString').value;
-            const resultDiv = document.getElementById('result');
-            
-            if (isPalindrome(inputString)) {
-                resultDiv.textContent = `"${inputString}" is a palindrome.`;
-                resultDiv.style.color = 'green';
-            } else {
-                resultDiv.textContent = `"${inputString}" is not a palindrome.`;
-                resultDiv.style.color = 'red';
-            }
+      document
+        .getElementById("palindromeForm")
+        .addEventListener("submit", function (event) {
+          event.preventDefault(); // Prevent form submission
+          const inputString = document.getElementById("inputString").value;
+          const resultDiv = document.getElementById("result");
+
+          if (isPalindrome(inputString)) {
+            resultDiv.textContent = `"${inputString}" is a palindrome.`;
+            resultDiv.style.color = "green";
+          } else {
+            resultDiv.textContent = `"${inputString}" is not a palindrome.`;
+            resultDiv.style.color = "red";
+          }
         });
     </script>
-</body>
+  </body>
 </html>
 ```
 
@@ -477,7 +479,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <textarea id="description" name="description"><?php echo $description; ?></textarea>
             <span class="error"><?php echo $descriptionErr; ?></span><br><br>
         </fieldset>
-        
+
         <button type="submit">Submit</button>
         <button type="button" onclick="window.location.href='index.php';">Cancel</button>
     </form>
@@ -491,49 +493,51 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 # 7. In a HTML form write a JavaScript function that generates all combinations of a string.
 
-_Example string :_ 'dog'  
-_Expected Output :_ d,do,dog,o,og,g
+*Example string :* 'dog'  
+*Expected Output :* d,do,dog,o,og,g
 
 ```html
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <title>String Combinations Generator</title>
-</head>
-<body>
+  </head>
+  <body>
     <h1>String Combinations Generator</h1>
     <form id="combinationForm">
-        <label for="inputString">Enter a string:</label>
-        <input type="text" id="inputString" required>
-        <button type="submit">Generate Combinations</button>
+      <label for="inputString">Enter a string:</label>
+      <input type="text" id="inputString" required />
+      <button type="submit">Generate Combinations</button>
     </form>
 
     <div id="result"></div>
 
     <script>
-        function generateCombinations(str) {
-            const combinations = [];
-            const length = str.length;
+      function generateCombinations(str) {
+        const combinations = [];
+        const length = str.length;
 
-            // Generate combinations
-            for (let i = 0; i < length; i++) {
-                for (let j = i + 1; j <= length; j++) {
-                    combinations.push(str.slice(i, j));
-                }
-            }
-            return combinations;
+        // Generate combinations
+        for (let i = 0; i < length; i++) {
+          for (let j = i + 1; j <= length; j++) {
+            combinations.push(str.slice(i, j));
+          }
         }
+        return combinations;
+      }
 
-        document.getElementById('combinationForm').addEventListener('submit', function(event) {
-            event.preventDefault(); // Prevent form submission
-            const inputString = document.getElementById('inputString').value;
-            const resultDiv = document.getElementById('result');
-            
-            const combinations = generateCombinations(inputString);
-            resultDiv.textContent = `Combinations: ${combinations.join(', ')}`;
+      document
+        .getElementById("combinationForm")
+        .addEventListener("submit", function (event) {
+          event.preventDefault(); // Prevent form submission
+          const inputString = document.getElementById("inputString").value;
+          const resultDiv = document.getElementById("result");
+
+          const combinations = generateCombinations(inputString);
+          resultDiv.textContent = `Combinations: ${combinations.join(", ")}`;
         });
     </script>
-</body>
+  </body>
 </html>
 ```
 
@@ -605,6 +609,8 @@ function factorial(n) {
 let num = 5;
 let result = factorial(num);
 console.log(`The factorial of ${num} is ${result}`);
+
+// OUTPUT = The factorial of 4 is 24
 ```
 
 ## b. Write a JavaScript program to find the greatest common divisor (gcd) of two positive numbers.
@@ -620,13 +626,15 @@ function gcd(a, b) {
 }
 
 // Example usage:
-const num1 = 24;
+const num1 = 48;
 const num2 = 36;
 const greatestCommonDivisor = gcd(num1, num2);
 console.log(`The GCD of ${num1} and ${num2} is: ${greatestCommonDivisor}`);
+
+// OUTPUT = The GCD of 48 and 36 is: 12
 ```
 
-# 10. In a HTML form using PHP 
+# 10. In a HTML form using PHP
 
 ## a. Check a number whether it is even or odd.
 
@@ -656,6 +664,8 @@ console.log(`The GCD of ${num1} and ${num2} is: ${greatestCommonDivisor}`);
 </html>
 ```
 
+![alt text](<../img/Screenshot 2024-11-29 202059.png>)
+
 ## b. Check a year whether it is leap year or not.
 
 ```php
@@ -683,3 +693,125 @@ console.log(`The GCD of ${num1} and ${num2} is: ${greatestCommonDivisor}`);
 </body>
 </html>
 ```
+
+![alt text](<../img/Screenshot 2024-11-29 201652.png>)
+
+# 12.
+
+## a. Write a JavaScript program to sort 50 natural numbers.
+
+```js
+// Function to generate an array of random natural numbers
+function generateNumbers(count, max) {
+  const numbers = [];
+  for (let i = 0; i < count; i++) {
+    // Generate a random natural number between 1 and max
+    const randomNum = Math.floor(Math.random() * max) + 1;
+    numbers.push(randomNum);
+  }
+  return numbers;
+}
+
+// Function to sort an array of numbers
+function sortNumbers(arr) {
+  return [...arr].sort((a, b) => a - b);
+}
+
+// Generate 50 random natural numbers
+const randomNumbers = generateNumbers(50, 100); // Adjust max as needed
+
+// Sort the numbers
+const sortedNumbers = sortNumbers(randomNumbers);
+
+// Output the sorted numbers
+console.log("Random Natural Numbers:", randomNumbers);
+console.log("Sorted Natural Numbers:", sortedNumbers);
+```
+
+![alt text](<../img/Screenshot 2024-11-29 201344.png>)
+
+## b. Write a JavaScript program that accept two integers and display the larger.
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Find Larger Integer</title>
+</head>
+<body>
+    <h1>Find the Larger Integer</h1>
+    <label for="num1">Enter first integer:</label>
+    <input type="number" id="num1" required>
+    <br>
+    <label for="num2">Enter second integer:</label>
+    <input type="number" id="num2" required>
+    <br>
+    <button onclick="findLarger()">Find Larger</button>
+    <h2 id="result"></h2>
+
+    <script>
+        function findLarger() {
+            // Get the values from the input fields
+            const num1 = parseInt(document.getElementById('num1').value);
+            const num2 = parseInt(document.getElementById('num2').value);
+            // Check if the inputs are valid integers
+            if (isNaN(num1) || isNaN(num2)) {
+                document.getElementById('result').innerText = "Please enter valid integers.";
+                return;
+            }
+
+            // Determine the larger number
+            const larger = num1 > num2 ? num1 : num2;
+
+            // Display the result
+            document.getElementById('result').innerText = `The larger integer is: ${larger}`;
+        }
+    </script>
+</body>
+</html>
+```
+
+![alt text](<../img/Screenshot 2024-11-29 200838.png>)
+
+# 13. Print the Patterns below using PHP in HTML form:
+
+```php
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Pattern Generator</title>
+</head>
+<body>
+    <h1>Pattern Generator</h1>
+    <form method="POST">
+        <label for="num">Enter number of rows:</label>
+        <input type="number" name="num" id="num">
+        <br><br>
+        <input type="submit" value="Generate">
+    </form>
+
+    <div>
+        <h2>Generated Pattern:</h2>
+        <pre>
+        <?php
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            $row = $_POST['num'];
+                echo "Pattern A <br>";
+                for ($i = 1; $i <= $row; $i++) {
+                    echo str_repeat('*', $i) . "\n";
+                }
+                // Pattern B
+                echo "<br>Pattern B <br><br>";
+                for ($i = $row; $i >= 1; $i--) {
+                    echo str_repeat(' ', $row - $i) . str_repeat('*', $i) . "\n";
+                }
+        }
+        ?>
+        </pre>
+    </div>
+</body>
+</html>
+```
+
+![alt text](<../img/Screenshot 2024-11-29 205204.png>)
+
