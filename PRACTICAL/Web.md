@@ -815,3 +815,48 @@ console.log("Sorted Natural Numbers:", sortedNumbers);
 
 ![alt text](<../img/Screenshot 2024-11-29 205204.png>)
 
+# 16. Write a JavaScript program to display the current day and time in the following format.   
+
+_**Sample Output** : Today is : Wednesday._
+_Current time is : 2 PM : 30 : 38_
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Time Generator</title>
+</head>
+
+<body>
+
+    <script>
+        // Get the current date and time
+        const now = new Date();
+
+        // Get the day of the week (0 = Sunday, 1 = Monday, ..., 6 = Saturday)
+        const dayOfWeek = now.getDay();
+
+        // Convert the day of the week to a string (e.g., "Sunday", "Monday", etc.)
+        const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+        const dayString = days[dayOfWeek];
+
+        // Get the hours, minutes, and seconds
+        const hours = now.getHours();
+        const minutes = now.getMinutes();
+        const seconds = now.getSeconds();
+
+        // Convert the hours to 12-hour format (e.g., 13 -> 1 PM)
+        const ampm = hours >= 12 ? "PM" : "AM";
+        const hour12 = hours % 12 || 12;
+
+        // Display the current day and time
+        document.write(`Today is : ${dayString}.<br>`);
+        document.write(`Current time is : ${hour12} ${ampm} : ${minutes} : ${seconds}`);
+    </script>
+
+</body>
+
+</html>
+```
+
+![alt text](<../img/Screenshot 2024-11-29 233308.png>)
