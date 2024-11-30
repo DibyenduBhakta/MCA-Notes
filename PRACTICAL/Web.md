@@ -959,15 +959,15 @@ _**already answered in no(12.b) question**_
 
 ```js
 function is_array(arr) {
-  return Array.isArray(arr);
+  const res = Array.isArray(arr);
+  if (res) return `${arr} is an Array`;
+  else return `${arr} is not an Array`;
 }
 console.log(is_array("www.hit.in"));
 console.log(is_array([1, 2, 4, 0]));
-
-// OUTPUT
-// false
-// true
 ```
+
+![alt text](<../img/Screenshot 2024-11-30 210728.png>)
 
 # 22. Write a java script program to sort 50 natural numbers.
 
