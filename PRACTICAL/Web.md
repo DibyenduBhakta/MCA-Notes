@@ -735,39 +735,42 @@ console.log("Sorted Natural Numbers:", sortedNumbers);
 ```html
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <title>Find Larger Integer</title>
-</head>
-<body>
+  </head>
+  <body>
     <h1>Find the Larger Integer</h1>
     <label for="num1">Enter first integer:</label>
-    <input type="number" id="num1" required>
-    <br>
+    <input type="number" id="num1" required />
+    <br />
     <label for="num2">Enter second integer:</label>
-    <input type="number" id="num2" required>
-    <br>
+    <input type="number" id="num2" required />
+    <br />
     <button onclick="findLarger()">Find Larger</button>
     <h2 id="result"></h2>
 
     <script>
-        function findLarger() {
-            // Get the values from the input fields
-            const num1 = parseInt(document.getElementById('num1').value);
-            const num2 = parseInt(document.getElementById('num2').value);
-            // Check if the inputs are valid integers
-            if (isNaN(num1) || isNaN(num2)) {
-                document.getElementById('result').innerText = "Please enter valid integers.";
-                return;
-            }
-
-            // Determine the larger number
-            const larger = num1 > num2 ? num1 : num2;
-
-            // Display the result
-            document.getElementById('result').innerText = `The larger integer is: ${larger}`;
+      function findLarger() {
+        // Get the values from the input fields
+        const num1 = parseInt(document.getElementById("num1").value);
+        const num2 = parseInt(document.getElementById("num2").value);
+        // Check if the inputs are valid integers
+        if (isNaN(num1) || isNaN(num2)) {
+          document.getElementById("result").innerText =
+            "Please enter valid integers.";
+          return;
         }
+
+        // Determine the larger number
+        const larger = num1 > num2 ? num1 : num2;
+
+        // Display the result
+        document.getElementById(
+          "result"
+        ).innerText = `The larger integer is: ${larger}`;
+      }
     </script>
-</body>
+  </body>
 </html>
 ```
 
@@ -815,7 +818,38 @@ console.log("Sorted Natural Numbers:", sortedNumbers);
 
 ![alt text](<../img/Screenshot 2024-11-29 205204.png>)
 
-# 16. Write a JavaScript program to display the current day and time in the following format.   
+# 15. Write PHP code to print Fibonacci series.
+
+```php
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Pattern Generator</title>
+</head>
+<body>
+    <?php
+    function printFibonacci($n) {
+        $a = 0;
+        $b = 1;
+        echo "$a $b ";
+        for ($i = 2; $i < $n; $i++) {
+            $c = $a + $b;
+            echo $c . " ";
+            $a = $b;
+            $b = $c;
+        }
+    }
+
+    // Print first 10 Fibonacci numbers
+    printFibonacci(10);
+    ?>
+</body>
+</html>
+```
+
+![alt text](<../img/Screenshot 2024-11-30 204758.png>)
+
+# 16. Write a JavaScript program to display the current day and time in the following format.
 
 _**Sample Output** : Today is : Wednesday._
 _Current time is : 2 PM : 30 : 38_
@@ -823,40 +857,118 @@ _Current time is : 2 PM : 30 : 38_
 ```html
 <!DOCTYPE html>
 <html>
-<head>
+  <head>
     <title>Time Generator</title>
-</head>
+  </head>
 
-<body>
-
+  <body>
     <script>
-        // Get the current date and time
-        const now = new Date();
+      // Get the current date and time
+      const now = new Date();
 
-        // Get the day of the week (0 = Sunday, 1 = Monday, ..., 6 = Saturday)
-        const dayOfWeek = now.getDay();
+      // Get the day of the week (0 = Sunday, 1 = Monday, ..., 6 = Saturday)
+      const dayOfWeek = now.getDay();
 
-        // Convert the day of the week to a string (e.g., "Sunday", "Monday", etc.)
-        const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-        const dayString = days[dayOfWeek];
+      // Convert the day of the week to a string (e.g., "Sunday", "Monday", etc.)
+      const days = [
+        "Sunday",
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday",
+      ];
+      const dayString = days[dayOfWeek];
 
-        // Get the hours, minutes, and seconds
-        const hours = now.getHours();
-        const minutes = now.getMinutes();
-        const seconds = now.getSeconds();
+      // Get the hours, minutes, and seconds
+      const hours = now.getHours();
+      const minutes = now.getMinutes();
+      const seconds = now.getSeconds();
 
-        // Convert the hours to 12-hour format (e.g., 13 -> 1 PM)
-        const ampm = hours >= 12 ? "PM" : "AM";
-        const hour12 = hours % 12 || 12;
+      // Convert the hours to 12-hour format (e.g., 13 -> 1 PM)
+      const ampm = hours >= 12 ? "PM" : "AM";
+      const hour12 = hours % 12 || 12;
 
-        // Display the current day and time
-        document.write(`Today is : ${dayString}.<br>`);
-        document.write(`Current time is : ${hour12} ${ampm} : ${minutes} : ${seconds}`);
+      // Display the current day and time
+      document.write(`Today is : ${dayString}.<br>`);
+      document.write(
+        `Current time is : ${hour12} ${ampm} : ${minutes} : ${seconds}`
+      );
     </script>
-
-</body>
-
+  </body>
 </html>
 ```
 
 ![alt text](<../img/Screenshot 2024-11-29 233308.png>)
+
+# 17. Write a JavaScript program to print the contents of the current window.
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Print Window</title>
+  </head>
+
+  <body>
+    <h2>Hello</h2>
+    <h3>World</h3>
+    <button onclick="printWindow()">Print this page</button>
+
+    <script>
+      function printWindow() {
+        window.print();
+      }
+    </script>
+  </body>
+</html>
+```
+
+![alt text](<../img/Screenshot 2024-11-30 204042.png>)
+
+# 18. Write a JavaScript function that reverses a number
+
+```js
+function reverseNum(num) {
+  let rev = 0;
+  while (num) {
+    let dig = num % 10;
+    rev = rev * 10 + dig;
+    num = Math.floor(num / 10);
+  }
+  return rev;
+}
+console.log(reverseNum(32415));
+console.log(reverseNum(100));
+
+// OUTPUT
+// 51423
+// 1
+```
+
+# 19. Write a JavaScript function that checks whether a passed string is palindrome or not?
+
+_**already answered in no(5) question**_
+
+# 20. Write a JavaScript program that accept two integers and display the larger.
+
+_**already answered in no(12.b) question**_
+
+# 21. Write a JavaScript function to check whether an `input` is an array or not.
+
+```js
+function is_array(arr) {
+  return Array.isArray(arr);
+}
+console.log(is_array("www.hit.in"));
+console.log(is_array([1, 2, 4, 0]));
+
+// OUTPUT
+// false
+// true
+```
+
+# 22. Write a java script program to sort 50 natural numbers.
+
+_**already answered in no(5) question**_
