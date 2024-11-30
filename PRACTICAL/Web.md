@@ -203,141 +203,196 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 # 4. Design and validate the form-
 
 ```php
-<?php
-// Check if the form was submitted
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Get the form data
-    $name = $_POST["name"];
-    $fatherName = $_POST["fatherName"];
-    $postalAddress = $_POST["postalAddress"];
-    $personalAddress = $_POST["personalAddress"];
-    $sex = $_POST["sex"];
-    $city = $_POST["city"];
-    $course = $_POST["course"];
-    $district = $_POST["district"];
-    $state = $_POST["state"];
-    $pinCode = $_POST["pinCode"];
-    $email = $_POST["email"];
-    $dob = $_POST["dob"];
-    $mobileNo = $_POST["mobileNo"];
-
-    // Validate the form data
-    $errors = array();
-
-    // Validate name
-    if (empty($name)) {
-        $errors["name"] = "Name is required.";
-    }
-
-    // Validate father's name
-    if (empty($fatherName)) {
-        $errors["fatherName"] = "Father's name is required.";
-    }
-
-    // Validate postal address
-    if (empty($postalAddress)) {
-        $errors["postalAddress"] = "Postal address is required.";
-    }
-
-    // Validate personal address
-    if (empty($personalAddress)) {
-        $errors["personalAddress"] = "Personal address is required.";
-    }
-
-    // Validate sex
-    if ($sex != "Male" && $sex != "Female") {
-        $errors["sex"] = "Sex must be either 'Male' or 'Female'.";
-    }
-
-    // Validate city
-    if (empty($city)) {
-        $errors["city"] = "City is required.";
-    }
-
-    // Validate course
-    if (empty($course)) {
-        $errors["course"] = "Course is required.";
-    }
-
-    // Validate district
-    if (empty($district)) {
-        $errors["district"] = "District is required.";
-    }
-
-    // Validate state
-    if (empty($state)) {
-        $errors["state"] = "State is required.";
-    }
-
-    // Validate pin code
-    if (empty($pinCode)) {
-        $errors["pinCode"] = "Pin code is required.";
-    }
-
-    // Validate email
-    if (empty($email)) {
-        $errors["email"] = "Email is required.";
-    } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        $errors["email"] = "Invalid email format.";
-    }
-
-    // Validate date of birth
-    if (empty($dob)) {
-        $errors["dob"] = "Date of birth is required.";
-    }
-
-    // Validate mobile number
-    if (empty($mobileNo)) {
-        $errors["mobileNo"] = "Mobile number is required.";
-    } elseif (!preg_match("/^[0-9]{10}$/", $mobileNo)) {
-        $errors["mobileNo"] = "Invalid mobile number format.";
-    }
-
-    // If there are no errors, process the form data
-    if (empty($errors)) {
-        echo "Form submitted successfully!";
-        // You can add code here to save the form data to a database or perform other actions
-    } else {
-        echo "Please fix the following errors:";
-        foreach ($errors as $error) {
-            echo "<br>" . $error;
-        }
-    }
-}
-?>
-
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Student Registration Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff;
+            margin: 0;
+        }
+        .form-container {
+            background-color: #b2fefa;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 400px;
+            text-align: center;
+            margin: auto;
+        }
+        form{
+            text-align: left;
+        }
+        .form-container h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .form-container label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        .form-container input,
+        .form-container select {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .form-container input[type="radio"] {
+            width: auto;
+            margin-right: 5px;
+        }
+        .form-container .buttons {
+            display: flex;
+            justify-content: space-between;
+        }
+        .form-container button {
+            padding: 10px 20px;
+            background-color: #007acc;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .form-container button:hover {
+            background-color: #005f99;
+        }
+
+        .error {
+            color: red;
+            font-size: 0.9em;
+        }
+    </style>
 </head>
 <body>
-    <h1>Student Registration Form</h1>
-    <form method="post" action="index.php">
-        Name: <input type="text" name="name" value="<?php echo isset($name) ? $name : '';?>"><br>
-        Father Name: <input type="text" name="fatherName" value="<?php echo isset($fatherName) ? $fatherName : '';?>"><br>
-        Postal Address: <input type="text" name="postalAddress" value="<?php echo isset($postalAddress) ? $postalAddress : '';?>"><br>
-        Personal Address: <input type="text" name="personalAddress" value="<?php echo isset($personalAddress) ? $personalAddress : '';?>"><br>
-        Sex: <input type="radio" name="sex" value="Male" <?php echo isset($sex) && $sex == "Male" ? 'checked' : '';?>>Male
-             <input type="radio" name="sex" value="Female" <?php echo isset($sex) && $sex == "Female" ? 'checked' : '';?>>Female<br>
-        City: <input type="text" name="city" value="<?php echo isset($city) ? $city : '';?>"><br>
-        Course: <select name="course">
-                    <option value="">Select Course</option>
-                    <option value="Course1" <?php echo isset($course) && $course == "Course1" ? 'selected' : '';?>>Course1</option>
-                    <option value="Course2" <?php echo isset($course) && $course == "Course2" ? 'selected' : '';?>>Course2</option>
-                    <option value="Course3" <?php echo isset($course) && $course == "Course3" ? 'selected' : '';?>>Course3</option>
-                </select><br>
-        District: <input type="text" name="district" value="<?php echo isset($district) ? $district : '';?>"><br>
-        State: <input type="text" name="state" value="<?php echo isset($state) ? $state : '';?>"><br>
-        Pin Code: <input type="text" name="pinCode" value="<?php echo isset($pinCode) ? $pinCode : '';?>"><br>
-        Email: <input type="email" name="email" value="<?php echo isset($email) ? $email : '';?>"><br>
-        DOB: <input type="date" name="dob" value="<?php echo isset($dob) ? $dob : '';?>"><br>
-        Mobile No: <input type="text" name="mobileNo" value="<?php echo isset($mobileNo) ? $mobileNo : '';?>"><br>
-        <input type="submit" name="submit" value="Submit Form">
-    </form>
+    <div class="form-container">
+        <h2>Student Registration Form</h2>
+        <?php
+        $errors = [];
+        $inputs = [];
+
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            $inputs['name'] = trim($_POST['name']);
+            $inputs['father_name'] = trim($_POST['father_name']);
+            $inputs['postal_address'] = trim($_POST['postal_address']);
+            $inputs['personal_address'] = trim($_POST['personal_address']);
+            $inputs['sex'] = $_POST['sex'] ?? '';
+            $inputs['city'] = $_POST['city'] ?? '';
+            $inputs['course'] = $_POST['course'] ?? '';
+            $inputs['district'] = $_POST['district'] ?? '';
+            $inputs['state'] = $_POST['state'] ?? '';
+            $inputs['pincode'] = trim($_POST['pincode']);
+            $inputs['email'] = trim($_POST['email']);
+            $inputs['dob'] = trim($_POST['dob']);
+            $inputs['mobile_no'] = trim($_POST['mobile_no']);
+
+            // Validation
+            if (empty($inputs['name'])) $errors['name'] = "Name is required.";
+            if (empty($inputs['father_name'])) $errors['father_name'] = "Father's name is required.";
+            if (empty($inputs['postal_address'])) $errors['postal_address'] = "Postal address is required.";
+            if (empty($inputs['personal_address'])) $errors['personal_address'] = "Personal address is required.";
+            if (empty($inputs['sex'])) $errors['sex'] = "Please select your gender.";
+            if (empty($inputs['city'])) $errors['city'] = "City is required.";
+            if (empty($inputs['course'])) $errors['course'] = "Please select a course.";
+            if (empty($inputs['district'])) $errors['district'] = "District is required.";
+            if (empty($inputs['state'])) $errors['state'] = "State is required.";
+            if (!preg_match('/^\d{6}$/', $inputs['pincode'])) $errors['pincode'] = "Pincode must be 6 digits.";
+            if (!filter_var($inputs['email'], FILTER_VALIDATE_EMAIL)) $errors['email'] = "Invalid email format.";
+            if (!preg_match('/^\d{10}$/', $inputs['mobile_no'])) $errors['mobile_no'] = "Mobile number must be 10 digits.";
+
+            if (empty($errors)) {
+                echo "<p style='color: green; text-align: center;'>Form submitted successfully!</p>";
+            }
+        }
+        ?>
+        <form action="" method="post">
+            <label for="name">Name</label>
+            <input type="text" name="name" id="name" value="<?= htmlspecialchars($inputs['name'] ?? '') ?>">
+            <span class="error"><?= $errors['name'] ?? '' ?></span>
+
+            <label for="father_name">Father Name</label>
+            <input type="text" name="father_name" id="father_name" value="<?= htmlspecialchars($inputs['father_name'] ?? '') ?>">
+            <span class="error"><?= $errors['father_name'] ?? '' ?></span>
+
+            <label for="postal_address">Postal Address</label>
+            <input type="text" name="postal_address" id="postal_address" value="<?= htmlspecialchars($inputs['postal_address'] ?? '') ?>">
+            <span class="error"><?= $errors['postal_address'] ?? '' ?></span>
+
+            <label for="personal_address">Personal Address</label>
+            <input type="text" name="personal_address" id="personal_address" value="<?= htmlspecialchars($inputs['personal_address'] ?? '') ?>">
+            <span class="error"><?= $errors['personal_address'] ?? '' ?></span>
+
+            <label>Sex</label>
+            <input type="radio" name="sex" value="Male" <?= (isset($inputs['sex']) && $inputs['sex'] === "Male") ? 'checked' : '' ?>> Male
+            <input type="radio" name="sex" value="Female" <?= (isset($inputs['sex']) && $inputs['sex'] === "Female") ? 'checked' : '' ?>> Female
+            <span class="error"><?= $errors['sex'] ?? '' ?></span>
+
+            <label for="city">City</label>
+            <select name="city" id="city">
+                <option value="">select..</option>
+                <option value="City1" <?= (isset($inputs['city']) && $inputs['city'] === "City1") ? 'selected' : '' ?>>City1</option>
+                <option value="City2" <?= (isset($inputs['city']) && $inputs['city'] === "City2") ? 'selected' : '' ?>>City2</option>
+            </select>
+            <span class="error"><?= $errors['city'] ?? '' ?></span>
+
+            <label for="course">Course</label>
+            <select name="course" id="course">
+                <option value="">select</option>
+                <option value="Course1" <?= (isset($inputs['course']) && $inputs['course'] === "Course1") ? 'selected' : '' ?>>Course1</option>
+                <option value="Course2" <?= (isset($inputs['course']) && $inputs['course'] === "Course2") ? 'selected' : '' ?>>Course2</option>
+            </select>
+            <span class="error"><?= $errors['course'] ?? '' ?></span>
+
+            <label for="district">District</label>
+            <select name="district" id="district">
+                <option value="">select</option>
+                <option value="District1" <?= (isset($inputs['district']) && $inputs['district'] === "District1") ? 'selected' : '' ?>>District1</option>
+                <option value="District2" <?= (isset($inputs['district']) && $inputs['district'] === "District2") ? 'selected' : '' ?>>District2</option>
+            </select>
+            <span class="error"><?= $errors['district'] ?? '' ?></span>
+
+            <label for="state">State</label>
+            <select name="state" id="state">
+                <option value="">select..</option>
+                <option value="State1" <?= (isset($inputs['state']) && $inputs['state'] === "State1") ? 'selected' : '' ?>>State1</option>
+                <option value="State2" <?= (isset($inputs['state']) && $inputs['state'] === "State2") ? 'selected' : '' ?>>State2</option>
+            </select>
+            <span class="error"><?= $errors['state'] ?? '' ?></span>
+
+            <label for="pincode">PinCode</label>
+            <input type="number" name="pincode" id="pincode" value="<?= htmlspecialchars($inputs['pincode'] ?? '') ?>">
+            <span class="error"><?= $errors['pincode'] ?? '' ?></span>
+
+            <label for="email">Email ID</label>
+            <input type="email" name="email" id="email" value="<?= htmlspecialchars($inputs['email'] ?? '') ?>">
+            <span class="error"><?= $errors['email'] ?? '' ?></span>
+
+            <label for="dob">DOB</label>
+            <input type="date" name="dob" id="dob" value="<?= htmlspecialchars($inputs['dob'] ?? '') ?>">
+            <span class="error"><?= $errors['dob'] ?? '' ?></span>
+
+            <label for="mobile_no">Mobile No</label>
+            <input type="number" name="mobile_no" id="mobile_no" value="<?= htmlspecialchars($inputs['mobile_no'] ?? '') ?>">
+            <span class="error"><?= $errors['mobile_no'] ?? '' ?></span>
+
+            <div class="buttons">
+                <button type="reset">Reset</button>
+                <button type="submit">Submit Form</button>
+            </div>
+        </form>
+    </div>
 </body>
 </html>
 ```
+
+![alt text](<../img/Screenshot 2024-12-01 010312.png>)
 
 # 5. Write a JavaScript function that checks whether a passed string is palindrome or not in a HTML form
 
@@ -696,6 +751,144 @@ console.log(`The GCD of ${num1} and ${num2} is: ${greatestCommonDivisor}`);
 
 ![alt text](<../img/Screenshot 2024-11-29 201652.png>)
 
+# 11. Design and validate the form.
+
+```php
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5faff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .form-container {
+            background-color: #eaf3fc;
+            padding: 20px;
+            border-radius: 10px;
+            width: 400px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border: 1px solid #d1e7fd;
+        }
+        .form-container h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .form-container label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        .form-container input,
+        .form-container select,
+        .form-container textarea {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        .form-container input[type="radio"],
+        .form-container input[type="checkbox"] {
+            width: auto;
+        }
+        .form-container button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .form-container button:hover {
+            background-color: #0056b3;
+        }
+        .error {
+            color: red;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h2>Registration Form</h2>
+        <?php
+        $errors = [];
+        $inputs = [];
+
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            $inputs['name'] = trim($_POST['name']);
+            $inputs['email'] = trim($_POST['email']);
+            $inputs['education'] = $_POST['education'] ?? '';
+            $inputs['gender'] = $_POST['gender'] ?? '';
+            $inputs['hobbies'] = $_POST['hobbies'] ?? [];
+            $inputs['comment'] = trim($_POST['comment']);
+
+            // Validation
+            if (empty($inputs['name'])) $errors['name'] = "Name cannot be left blank.";
+            if (empty($inputs['email']) || !filter_var($inputs['email'], FILTER_VALIDATE_EMAIL)) $errors['email'] = "Email cannot be left blank or must be valid.";
+            if (empty($inputs['education'])) $errors['education'] = "Tell us about your education.";
+            if (empty($inputs['gender'])) $errors['gender'] = "Specify your gender.";
+            if (empty($inputs['hobbies'])) $errors['hobbies'] = "What are your hobbies?";
+            if (empty($inputs['comment'])) $errors['comment'] = "This field is required.";
+
+            if (empty($errors)) {
+                echo "<p style='color: green; text-align: center;'>Form submitted successfully!</p>";
+            }
+        }
+        ?>
+        <form action="" method="post">
+            <label for="name">Name</label>
+            <input type="text" name="name" id="name" value="<?= htmlspecialchars($inputs['name'] ?? '') ?>">
+            <span class="error"><?= $errors['name'] ?? '' ?></span>
+
+            <label for="email">Email</label>
+            <input type="email" name="email" id="email" value="<?= htmlspecialchars($inputs['email'] ?? '') ?>">
+            <span class="error"><?= $errors['email'] ?? '' ?></span>
+
+            <label for="education">Education</label>
+            <select name="education" id="education">
+                <option value="">...</option>
+                <option value="High School" <?= (isset($inputs['education']) && $inputs['education'] === "High School") ? 'selected' : '' ?>>High School</option>
+                <option value="Undergraduate" <?= (isset($inputs['education']) && $inputs['education'] === "Undergraduate") ? 'selected' : '' ?>>Undergraduate</option>
+                <option value="Postgraduate" <?= (isset($inputs['education']) && $inputs['education'] === "Postgraduate") ? 'selected' : '' ?>>Postgraduate</option>
+            </select>
+            <span class="error"><?= $errors['education'] ?? '' ?></span>
+
+            <label>Gender</label>
+            <input type="radio" name="gender" value="Male" <?= (isset($inputs['gender']) && $inputs['gender'] === "Male") ? 'checked' : '' ?>> Male
+            <input type="radio" name="gender" value="Female" <?= (isset($inputs['gender']) && $inputs['gender'] === "Female") ? 'checked' : '' ?>> Female
+            <span class="error"><?= $errors['gender'] ?? '' ?></span>
+
+            <label>Hobbies</label>
+            <input type="checkbox" name="hobbies[]" value="Drawing" <?= (isset($inputs['hobbies']) && in_array("Drawing", $inputs['hobbies'])) ? 'checked' : '' ?>> Drawing
+            <input type="checkbox" name="hobbies[]" value="Singing" <?= (isset($inputs['hobbies']) && in_array("Singing", $inputs['hobbies'])) ? 'checked' : '' ?>> Singing
+            <input type="checkbox" name="hobbies[]" value="Dancing" <?= (isset($inputs['hobbies']) && in_array("Dancing", $inputs['hobbies'])) ? 'checked' : '' ?>> Dancing
+            <span class="error"><?= $errors['hobbies'] ?? '' ?></span>
+
+            <label for="comment">Comment</label>
+            <textarea name="comment" id="comment" rows="4"><?= htmlspecialchars($inputs['comment'] ?? '') ?></textarea>
+            <span class="error"><?= $errors['comment'] ?? '' ?></span>
+
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+</body>
+</html>
+```
+
+![alt text](<../img/Screenshot 2024-12-01 011155.png>)
+
 # 12.
 
 ## a. Write a JavaScript program to sort 50 natural numbers.
@@ -817,6 +1010,68 @@ console.log("Sorted Natural Numbers:", sortedNumbers);
 ```
 
 ![alt text](<../img/Screenshot 2024-11-29 205204.png>)
+
+# 14. Write PHP code to print Grade card of Student using Switch case.
+
+```php
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Student Grade Card</title>
+</head>
+<body>
+    <form method="post" action="">
+        <label for="name">Student Name:</label>
+        <input type="text" id="name" name="name" required>
+        <br>
+        <label for="marks">Marks:</label>
+        <input type="number" id="marks" name="marks" required>
+        <br>
+        <input type="submit" value="Submit">
+    </form>
+
+    <?php
+    function printGrade($marks) {
+        switch (true) {
+            case ($marks >= 90):
+                $grade = "A+";
+                break;
+            case ($marks >= 80):
+                $grade = "A";
+                break;
+            case ($marks >= 70):
+                $grade = "B+";
+                break;
+            case ($marks >= 60):
+                $grade = "B";
+                break;
+            case ($marks >= 50):
+                $grade = "C";
+                break;
+            case ($marks >= 40):
+                $grade = "D";
+                break;
+            default:
+                $grade = "F";
+                break;
+        }
+        return $grade;
+    }
+
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        $studentName = $_POST['name'];
+        $studentMarks = $_POST['marks'];
+        $studentGrade = printGrade($studentMarks);
+
+        echo "<h1>Grade Card</h1>";
+        echo "<p>Student Name: $studentName</p>";
+        echo "<p>Marks: $studentMarks</p>";
+        echo "<p>Grade: $studentGrade</p>";
+    }
+    ?>
+</body>
+</html>
+```
 
 # 15. Write PHP code to print Fibonacci series.
 
